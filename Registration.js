@@ -47,3 +47,6 @@ function dd(){
 if(email.value=="satya3@gmail.com"){
 console.log(email.value+"email")
 window.location.href = "Login.html"; }}
+function back(){
+window.location.href = "Home.html"
+}

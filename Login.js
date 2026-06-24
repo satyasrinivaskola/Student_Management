@@ -35,4 +35,7 @@ window.location.href="Student_dashboard.html"
 else{
 alert("Incorrect credentials")}}
 
+function back(){
+window.location.href = "Home.html"
+}
 

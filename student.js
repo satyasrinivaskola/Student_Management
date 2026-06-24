@@ -31,3 +31,6 @@ document.getElementById("notesSection")
 });
 
 }
+
+function  back(){
+window.location.href="Home.html"}
