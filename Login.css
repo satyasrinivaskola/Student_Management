@@ -17,7 +17,7 @@ body{
     linear-gradient(
     135deg,
     #0f9b8e,
-    #38ef7d
+   blue
     );
 }
 
@@ -39,7 +39,7 @@ body{
 
 .login-container h1{
 
-    color:#198754;
+    color:blue;
 
     margin-bottom:10px;
 }
@@ -70,7 +70,7 @@ body{
 
     outline:none;
 
-    border-color:#198754;
+    border-color:blue;
 }
 
 .login-container button{
@@ -79,7 +79,7 @@ body{
 
     padding:12px;
 
-    background:#198754;
+    background:#3873d2;
 
     color:white;
 
@@ -94,7 +94,7 @@ body{
 
 .login-container button:hover{
 
-    background:#146c43;
+    background:#142a6c;
 }
 
 .login-container p{
@@ -106,7 +106,7 @@ body{
 
     text-decoration:none;
 
-    color:#198754;
+    color:rgb(173, 180, 230);
 
     font-weight:bold;
 }

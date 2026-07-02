@@ -18,11 +18,34 @@ app.use(cros())
 app.use(express.json());
 async function data(){
 await sql.connect(config)
-const result=await sql.query("select Email,Password from students_details")
+/*const result=await sql.query("select Email,Password from students_details")
 app.get("/yyy",async(req,res)=>{
 res.send(result.recordset)
-})
-app.post("/yyy", (req, res) => {
+})*/
+//Login
+app.post("/login",async(req,res)=>{
+const {email,password}=req.body
+console.log(req.body)
+const result=await sql.query(`select Email,Password,role from students_details
+where Email='${email}' and Password='${password}'`)
+console.log(result.recordset.length)
+if(result.recordset.length==1){
+res.json({
+success:true,
+role:result.recordset[0].role})}
+else{
+res.json({
+success:false})
+}
+//console.log(result.recordset)
+}
+)
+
+
+
+//Registration
+app.post("/registration", async(req, res) => {
+
     console.log(req.body.Email);
     const {
     Email,
@@ -39,15 +62,63 @@ app.post("/yyy", (req, res) => {
     course
     }=req.body
 //const Email=  req.body.Email
-  sql.query(`insert into students_details(FirstName,LastName,Email,ContactNumber,AadhaarNumber,
+const student_rec=await sql.query(`select *from students_details where email='${Email}'`)
+  if(student_rec.recordset.length>0){
+   res.json({available:true})
+   console.log(res.json())
+   }
+   else{
+    res.json({available:true})}
+  const result= await sql.query(`insert into students_details(FirstName,LastName,Email,ContactNumber,AadhaarNumber,
 Gender,DOB,CollegeName,CourseInterested,PassWord)
 values('${firstname}','${lastname}','${Email}','${contact}','${aadhaar}',
 '${gender}','${date}','${college}','${course}','${password}')`)
-   
+   console.log("rec length"+student_rec.recordset.length)
+ 
+
 });
 
+//Admin
+app.get('/Admin',async(req,res)=>{
+const result_1=await sql.query("select *from students_details where role='Student'")
+const count=await sql.query("select count(*) as count from students_details where role='Student'")
+const admin_data=await sql.query("select *from students_details where role='Admin'")
+res.send({data:result_1.recordset,
+count:count.recordset,
+admin_data:admin_data.recordset
+})
+console.log(result_1.recordset)
+})
+
+app.post('/Admin',async(req,res)=>{
+const {Email,Password,role}=req.body
+const result=await sql.query(`insert into students_details(Email,Password,role)
+values('${Email}','${Password}','${role}')`)
+
+res.json(result.recordset)
+console.log(result.recordset)
+})
+
+app.post('/Admin/Details',async(req,res)=>{
+const id=req.body.id
+const result=await sql.query(`select *from students_details where studentid='${id}'`)
+
+res.json(result.recordset)
+console.log("admin/details")
+})
+//add admin
+
+app.post('/addAdmin',async(req,res) => {
+const {email,Password,role}=req.body
+const addadmin=sql.query(`insert into students_details(Email,Password,role)
+values('${email}','${Password}','${role}')`
+
+)
+res.json(...{edit:true},addadmin.recordset)
+})
 //console.log(result.recordset)
 }
 app.listen(3000,()=>{
 console.log("Hello i am 3000 port and connected")})
 data()
+module.exports={sql,config}

@@ -14,6 +14,7 @@ const confirmpassword=document.getElementById("confirmpassword")
 
 
 async function  Registration(){
+
 //console.log(date.innerHTML)
 const methods={
 method:"POST",
@@ -35,18 +36,40 @@ course:course.value
 
 })}
 
-await fetch("http://localhost:3000/yyy",methods)
+await fetch("http://localhost:3000/registration",methods)
 .then(res=>res.json())
-.then(data=>{console.log(data)
-dd()
+.then(data=>{
+console.log(data)
+if(data[0].available){
+window.alert("Already availblae")
+window.location.href = "Login.html"
+}
+else{
+window.location.href = "Home.html"
+}
+console.log("Hello")
+window.alert("Registred")
+window.location.href = "Login.html"
 })
-console.log(lastname.value+ee)
+
+
+
+}
+/*function dd(){
+fetch("http://localhost:3000/registration")
+.then(res=>res.json())
+.then(dat=>{
+dat.map(list=>{
+if(email.value=="priya@gmail.com"){
+console.log(email.value+"email")
+window.alert(`'${email.value}' Already registered`)
+window.location.href = "Login.html"; }
+})
 }
 
-function dd(){
-if(email.value=="satya3@gmail.com"){
-console.log(email.value+"email")
-window.location.href = "Login.html"; }}
+)
+}*/
 function back(){
 window.location.href = "Home.html"
 }
+

@@ -1,12 +1,12 @@
-document.getElementById("studentName")
+/*document.getElementById("studentName")
 .innerHTML =
-"Welcome to your Dashboard";
+"Welcome to your Dashboard";*/
 
 function viewNotes(){
 
 fetch("http://localhost:3000/notes")
 
-.then(res=>res.json())
+.then(res=>res.text())
 
 .then(data=>{
 
