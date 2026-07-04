@@ -1,8 +1,8 @@
 const username=document.getElementById("email")
 const password=document.getElementById("password")
 
-function btn(){
-
+function btn(event){
+event.preventDefault()
 const user={
 email:username.value,
 password:password.value}

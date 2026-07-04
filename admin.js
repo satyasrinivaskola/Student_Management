@@ -1,5 +1,3 @@
-//console.log("Hello Adin")
-
 let student=document.getElementById("student-table");
 let count=document.getElementById("count")
 let student_table=document.getElementById("student_table")
@@ -10,9 +8,9 @@ window.location.href=`student_profile.html?id=${id}`
 
 }
 
-function editAdmin(id){
+function editAdmin(email,edit){
 console.log("Hello Edit")
-window.location.href=`Registration.html?id=${id}`
+window.location.href=`Registration.html?email=${email}&edit=${edit}`
 
 }
 
@@ -20,11 +18,9 @@ function student_details(){
 fetch("http://localhost:3000/Admin")
 .then(res=> res.json())
 .then(data=>{
-
+console.log(data)
 count.textContent=data.count[0].count
-//count_1.textContent=data.count[0].count
-//console.log(data)
-//console.log(data.data)
+
 data.data.map(list=>{
 let tr_item=document.createElement("tr")
 
@@ -34,6 +30,7 @@ let td_item_3=document.createElement("td")
 let td_item_4=document.createElement("td")
 let button=document.createElement("button")
 button.textContent="View Details"
+
 button.addEventListener('click',()=>view_details(list.StudentID))
 //let td_item_3=document.createElement("td")
 td_item_1.textContent=(list.FirstName+list.LastName)
@@ -46,6 +43,7 @@ tr_item.appendChild(td_item_2)
 tr_item.appendChild(td_item_3)
 tr_item.appendChild(td_item_4)
 student_table.appendChild(tr_item)})
+
 const Admin_details=document.getElementById("Admin_details")
 console.log(data.admin_data)
 
@@ -59,7 +57,7 @@ const li_button=document.createElement("Button")
 li_button.textContent="Edit"
 li_button.addEventListener('click',()=>{
 console.log("Hello console")
-editAdmin(elements.StudentID)
+editAdmin(elements.Email,edit=true)
 }
 )
 li_contact.textContent=elements.ContactNumber
@@ -81,10 +79,10 @@ li_div.classList.add("admin_details")
 })
 
 }
-student_details()
 
+student_details()
 const admin_page=document.getElementById("admin_page")
-let add= true
+let add=true
 function admin(){
 
 if(add===true){
@@ -92,10 +90,10 @@ if(add===true){
 console.log("admin()")
 
 admin_page.innerHTML=
-`<h1>Add New Admin </h1>
+`<div class="addadmin-container"><h1>Add New Admin </h1>
 <input type="email" placeholder="Email" id="Email_admin"/></br>
 <input type="password" placeholder="Password" id="Password"/></br>
-<button id="submit">Submit</button>
+<button id="submit">Submit</button></div>
 
 
 

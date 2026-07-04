@@ -19,7 +19,16 @@ const list=document.createElement("li")
 let value=(data[0][x])
 list.textContent=x+": "+value
 student_details.appendChild(list)
+
+
 }
+const back=document.createElement("button")
+back.textContent="Back"
+student_details.appendChild(back)
+back.addEventListener("click",function(){
+
+
+window.location.href="admin.html"})
 })
 
 function submit(){
@@ -44,5 +53,4 @@ fetch("http://localhost:3000/Admin",methods)
 .then(data=>console.log(data))
 alert("Admin added succefully")
 }
-
 

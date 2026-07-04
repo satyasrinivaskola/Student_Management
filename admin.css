@@ -2,6 +2,21 @@ h1{
 color:white;
 
 }
+.top-header {
+margin-left:370px;}
+.student{
+position:relative;
+left:490px;
+
+color:whitesmoke
+}
+.sub-batch{
+background-color: #25baeb;
+width:270px;
+margin:10px;
+padding-left:10px;
+border-radius:10px;
+}
 body{
 background-color: blue;}
 .container{
@@ -15,8 +30,23 @@ top:10px;
 border-radius:20px;}
 .Logout{
 position:absolute;
-top:30px;
-right:30px;}
+top:50px;
+right:30px;
+
+width:70px;
+
+text-align:center;
+text-decoration:none;
+color:white;
+border-radius: 10px;
+
+font-family:'Times New Roman', Times, serif;
+ padding:8px 15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;}
 .count{
 display:inline;}
 table{
@@ -63,10 +93,30 @@ border-radius: 10px;;}
 #Admin_details{
 display:flex;
 flex-direction:row;
-
+text-align:center;
+justify-content: center;
 flex-wrap:wrap;
 }
 
 button{
 margin-top:10px;}
+.top-container{
+display:flex;
+flex-direction: row-reverse;
+}
+.addadmin{
+position:absolute;
+top:100px;
 
+right:30px;
+
+}
+
+.addadmin-container{
+background-color: rgb(32, 32, 128);
+width:270px;
+padding-left:10px;
+border-radius: 10px;
+position:absolute;
+top:60px;
+left:470px;}

@@ -18,10 +18,7 @@ app.use(cros())
 app.use(express.json());
 async function data(){
 await sql.connect(config)
-/*const result=await sql.query("select Email,Password from students_details")
-app.get("/yyy",async(req,res)=>{
-res.send(result.recordset)
-})*/
+
 //Login
 app.post("/login",async(req,res)=>{
 const {email,password}=req.body
@@ -63,12 +60,12 @@ app.post("/registration", async(req, res) => {
     }=req.body
 //const Email=  req.body.Email
 const student_rec=await sql.query(`select *from students_details where email='${Email}'`)
-  if(student_rec.recordset.length>0){
+  if(student_rec.recordset.length==1){
    res.json({available:true})
    console.log(res.json())
    }
    else{
-    res.json({available:true})}
+    res.json({available:false})}
   const result= await sql.query(`insert into students_details(FirstName,LastName,Email,ContactNumber,AadhaarNumber,
 Gender,DOB,CollegeName,CourseInterested,PassWord)
 values('${firstname}','${lastname}','${Email}','${contact}','${aadhaar}',
@@ -95,7 +92,7 @@ const {Email,Password,role}=req.body
 const result=await sql.query(`insert into students_details(Email,Password,role)
 values('${Email}','${Password}','${role}')`)
 
-res.json(result.recordset)
+res.json({Email:Email,Password:Password,role:role,edit:true})
 console.log(result.recordset)
 })
 
@@ -118,7 +115,11 @@ res.json(...{edit:true},addadmin.recordset)
 })
 //console.log(result.recordset)
 }
-app.listen(3000,()=>{
+app.listen(5000, "0.0.0.0", () => {
+  console.log("Server running on port 5000");
+});
+/*app.listen(3000,()=>{
 console.log("Hello i am 3000 port and connected")})
+*/
 data()
 module.exports={sql,config}
