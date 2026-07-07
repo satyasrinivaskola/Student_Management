@@ -1,20 +1,25 @@
-const username=document.getElementById("email")
-const password=document.getElementById("password")
 
-function btn(event){
+
+async function  btn(event){
+const username=document.getElementById("email").value
+const password=document.getElementById("password").value
 event.preventDefault()
 const user={
-email:username.value,
-password:password.value}
+email:username,
+password:password}
 const methods={
 method:'POST',
 headers:{'Content-Type':'application/json'},
 body:JSON.stringify(user)
 }
 console.log("Hello")
-fetch("http://localhost:3000/login",methods)
+console.log(username)
+console.log(password)
+await fetch("http://localhost:3000/login",methods)
 .then (res=>res.json())
-.then(data=>{if(data.success){
+.then(data=>{
+console.log(data)
+if(data.success){
 if(data.role==="Admin"){
 alert("Login succefully Admin")
 window.location.href="admin.html"
@@ -24,10 +29,15 @@ alert("Login succefully Student")
 window.location.href="Student_dashboard.html"
 }
 }
+else{
+console.log("filed")
+console.log(data)}
 })
 
 }
-
+function Forgot(){
+console.log("Forgot")
+document.createElement("input")}
 /*
 
 function btn(){

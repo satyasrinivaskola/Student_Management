@@ -4,7 +4,7 @@
 
 function viewNotes(){
 
-fetch("http://localhost:3000/notes")
+fetch("http://192.168.100.6:5000/notes")
 
 .then(res=>res.text())
 

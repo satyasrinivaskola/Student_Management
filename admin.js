@@ -1,19 +1,33 @@
 let student=document.getElementById("student-table");
 let count=document.getElementById("count")
 let student_table=document.getElementById("student_table")
+//View Student Details
 function view_details(id){
 console.log("Hello View Button "+id)
 
 window.location.href=`student_profile.html?id=${id}`
 
 }
-
-function editAdmin(email,edit){
+//Edit Admin
+function editAdmin(email,edit,id){
 console.log("Hello Edit")
-window.location.href=`Registration.html?email=${email}&edit=${edit}`
+window.location.href=`Registration.html?email=${email}&edit=${edit}&id=${id}`
 
 }
 
+//delete Admin
+const del={
+method:"DELETE",
+
+}
+function removeAdmin(id){
+console.log("Remove"+id)
+fetch(`http://localhost:3000/Admin/${id}`,del)
+.then(res=>res.json())
+.then(data=>{console.log(data)
+if(data.details){
+alert(`'${data.details.Email}'Admin deleted succesfully`)}})
+}
 function student_details(){
 fetch("http://localhost:3000/Admin")
 .then(res=> res.json())
@@ -57,13 +71,21 @@ const li_button=document.createElement("Button")
 li_button.textContent="Edit"
 li_button.addEventListener('click',()=>{
 console.log("Hello console")
-editAdmin(elements.Email,edit=true)
-}
-)
+editAdmin(elements.Email,edit=true,elements.StudentID)
+})
+const remove_button=document.createElement("Button")
+//li_button.id("conatc")
+remove_button.textContent="Remove"
+remove_button.addEventListener('click',()=>{
+console.log("Hello console")
+removeAdmin(elements.StudentID)
+})
+
 li_contact.textContent=elements.ContactNumber
 
 
 li_div.appendChild(li_e)
+li_div.appendChild(remove_button)
 li_div.appendChild(li_contact)
 li_div.appendChild(li_button)
 li_e.textContent=elements.Email

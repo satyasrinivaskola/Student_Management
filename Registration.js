@@ -13,25 +13,70 @@ const password=document.getElementById("password")
 const confirmpassword=document.getElementById("confirmpassword")
 const params=new URLSearchParams(window.location.search)
 const email_para=params.get("email")
+const id=params.get("id")
 const Register=document.getElementById("Register")
 const edit=params.get("edit")
 console.log(email_para)
 console.log(edit)
-
+console.log(id)
 console.log(email.innerHTML=email_para)
+const Register_b=document.getElementById("Register")
+function adminupdate (){
+const methods={
+method:"PUT",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({Email:email.value,
+lastname:lastname.value,
+firstname:firstname.value,
+contact:contact.value,
+aadhaar:aadhaar.value,
+address:address.value,
+gender:gender.value,
+//date:date.value,
+qualification:qualification.value,
+college:college.value,
+
+course:course.value,
+
+
+})}
+
+
+ fetch(`http://localhost:3000/registration/${id}`,methods)
+.then(res=>res.json())
+.then(data=>{
+console.log(data.updated)
+if(data.updated){
+alert("Admin details updated successfully")}
+})
+}
 function data(){
 if(edit){
 Back.addEventListener("click",function(){
 window.location.href="Admin.html"}
+
 )
+Register_b.addEventListener("click",()=>{
+console.log("Hello update button")
+adminupdate()})
 Register.textContent="Update"
 console.log("HEllo True")
 email.value=email_para
 email.readOnly=true
 password.disabled=true
 confirmpassword.disabled=true
-}}
+
+
+
+
+}
+else{
+Register_b.addEventListener("click",()=>{
+console.log("Hello Register button")
+Registration()
+})}}
 data()
+
 async function  Registration(){
 
 const methods={
@@ -44,7 +89,7 @@ contact:contact.value,
 aadhaar:aadhaar.value,
 address:address.value,
 gender:gender.value,
-date:'23-07-2000',
+//date:date.value,
 qualification:qualification.value,
 college:college.value,
 password:password.value,
