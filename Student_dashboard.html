@@ -13,14 +13,25 @@
     <h2>Upload Assignment</h2>
 
     <input type="file" id="fileInput" class="file_e" />
-
-    <button onclick="uploadFile()">
+<input placeholder="File Description" id="description"/>
+    <br/><button onclick="uploadFile()">
         Upload File
     </button>
 
-    <h2>Uploaded Files</h2>
+    <h2 id="uploaded_files"><a href="#">Uploaded Files</a></h2>
 
-    <div id="fileList"></div>
+    
+
+   <table border="1">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody id="file_table"></tbody>
+</table>
 
 </div>
 

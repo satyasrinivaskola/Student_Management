@@ -22,7 +22,7 @@ margin-top:120px;
 
 h1{
     text-align:center;
-    color:#198754;
+    color:#195287;
     margin-bottom:20px;
 }
 
@@ -33,6 +33,7 @@ h2{
 .file_e{
     width:100%;
     padding:10px;
+    margin-bottom:10px;
     border:1px solid #ccc;
 }
 
@@ -42,7 +43,7 @@ button{
 
     padding:10px 20px;
 
-    background:#198754;
+    background:#197387;
 
     color:white;
 
@@ -54,9 +55,13 @@ button{
 }
 
 button:hover{
-    background:#146c43;
+    background:#143c6c;
 }
-
+#description{
+height:40px;
+margin-left:1px;
+text-align: center;
+}
 .file-item{
 
     margin-top:10px;
@@ -65,5 +70,5 @@ button:hover{
 
     background:#e8f5e9;
 
-    border-left:5px solid green;
+    border-left:5px solid rgb(0, 109, 128);
 }

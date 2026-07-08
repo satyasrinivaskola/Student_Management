@@ -28,7 +28,8 @@ console.log(result.recordset.length)
 if(result.recordset.length==1){
 res.json({
 success:true,
-role:result.recordset[0].role})}
+role:result.recordset[0].role,
+result:result.recordset[0]})}
 else{
 res.json({
 success:false})
@@ -173,7 +174,7 @@ const storage = multer.diskStorage({
 
     filename:function(req,file,cb){
 
-        cb(null,Date.now()+"-"+file.originalname);
+        cb(null,file.originalname);
 
     }
 
@@ -185,25 +186,29 @@ async function startserver(){
 
 try{
 await sql.connect(config)
-const s=await sql.query(`select * from demo`)
-
-
 app.post("/upload",
-
 upload.single("file"),
-
 async(req,res)=>{
 const f=req.file.originalname
-const s=await sql.query(`insert into demo(name)
+const s_id=req.body.email
+const desc=req.body.desc
+const s=await sql.query(`insert into student_files(file_name,Studentid,description)
 
-values('${f}')`)
-    console.log(req.body);
+values('${f}','${s_id}','${desc}')`)
+    //console.log(req.body);
 
-    console.log(req.file);
+    //console.log(req.file);
 
     res.send({status:"Uploaded"});
 
 });
+app.post("/files_h",async(req,res)=>{
+const email=req.body.email
+console.log(email)
+const files_h=await sql.query(`select * from student_files
+where StudentId='${email}'`)
+res.json(files_h.recordset)
+})
 }
 catch(err){
 console.log(err)}
@@ -214,12 +219,13 @@ console.log(err)}
 startserver()
 
 }
-
+data()
 /*app.listen(5000, "0.0.0.0", () => {
   console.log("Server running on port 5000");
-});*/
+});
+*/
 
-data()
+
 app.listen(3000,()=>{
 console.log("Hello i am 3000 port and connected")})
 

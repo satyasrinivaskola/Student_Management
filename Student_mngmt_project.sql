@@ -161,3 +161,17 @@ create table student_files(
 file_name varchar,
 StudentId int,
  foreign key(StudentId)  references students_details(StudentID))
+
+ select * from students_details
+SELECT * FROM dbo.Students_details WHERE Email = 'priya@gmail.com';
+select *from demo
+sp_help student_files
+select * from student_files
+alter table student_files
+alter column 
+drop constraint FK__student_f__Stude__5DEAEAF5
+alter table student_files 
+alter column file_name varchar(250)
+sp_help students_details
+alter table student_files
+add foreign key(Studentid) references students_details(email)

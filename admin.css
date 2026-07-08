@@ -21,7 +21,8 @@ border-radius:10px;
 }
 body{
 background-color: blue;
-margin:0px;}
+margin:0px;
+width:fit-content;}
 .container{
 height:400px;
 width:300px;
@@ -90,6 +91,7 @@ margin:10px;
 color:blueviolet;
 background-color:bisque;
 text-align:center;
+position:relative;
 list-style-type: none;
 border-radius: 10px;;}
 

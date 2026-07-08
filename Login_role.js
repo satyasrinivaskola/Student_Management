@@ -19,14 +19,16 @@ await fetch("http://localhost:3000/login",methods)
 .then (res=>res.json())
 .then(data=>{
 console.log(data)
+
 if(data.success){
 if(data.role==="Admin"){
 alert("Login succefully Admin")
 window.location.href="admin.html"
 }
 else{
+const email_id=data.result.Email
 alert("Login succefully Student")
-window.location.href="Student_dashboard.html"
+window.location.href=`Student_dashboard.html?email=${email_id}`
 }
 }
 else{
