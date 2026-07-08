@@ -35,40 +35,81 @@ console.log(data)}
 })
 
 }
+
+//Forgot Password
+const forgot=document.getElementById("forgot")
+const captcha=Math.floor((Math.random()*100000))
+const p=document.createElement("p")
+const l=document.createElement("input")
+l.setAttribute("id","l_E")
+const back_b=document.getElementById("back_b")
+const login_b=document.getElementById("login_b")
+const forgot_b=document.getElementById("forgot_b")
+const login_container=document.getElementById("login-container")
 function Forgot(){
+const pass=document.getElementById("password")
+const email=document.getElementById("email")
 console.log("Forgot")
-document.createElement("input")}
-/*
+pass.style.display="none"
+back_b.style.display="none"
+login_b.style.display="none"
+p.textContent=captcha
+forgot_b.textContent="Create New Password"
 
-function btn(){
-console.log("Hello")
+const l_E=document.getElementById("l_E")
+l.placeholder="Enter captch"
+forgot.appendChild(p)
+forgot.appendChild(l)
+//console.log(l_E.value)
+if(forgot_b.textContent=="Create New Password"){
+if(email.value==""){
+console.log(email.value)
+alert("Please Enter Email")}
+else if(captcha==l_E.value){
+console.log("captcha matched")
+login_container.innerHTML=`<h1>Update the password</h1>
+<input placeholder="Passowrd" id="pass"/>
+<input placeholder="confirm Password" id="confirm_pass" />
+<button id="create_p" >Create Password</button>
+`
 
-fetch("http://localhost:3000/login",methods)
+const p=document.getElementById("pass")
+const confirm_p=document.getElementById("confirm_pass")
+
+create_p.addEventListener("click",(
+()=>{
+if(p.value==confirm_p.value){
+console.log("Password Matched")
+console.log(email.value)
+const user={email:email.value,
+password:p.value}
+const met={
+method:"PUT",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(user)}
+const e=email.value
+fetch(`http://localhost:3000/forget/${e}`,met)
 .then(res=>res.json())
-.then(data=>{
-console.log(data)
-console.log("Hello Login")
-
-if(data.role==='Admin'){
-window.location.href='Admin.html'
+.then(data=>{if(data.forget){
+alert("Password created succesfully")
+window.location.href="Login_role.html"
 }
 else{
-window.location.href='student_dashboard.html'}
-}
-
-)
-
-}
-
-function d(){
-if(isusername===true &&ispassword===true ){
-window.location.href="Student_dashboard.html"
+alert("Not a valid user")}})
 }
 else{
-alert("Incorrect credentials")}}
-function Admin(){
+alert("Password & confirm password not the same")}
+console.log(p.value)
+console.log(confirm_p.value)
 
-}*/
+}))
+
+}
+else{
+alert("captcha not matched")
+}}
+}
+
 function back(){
 window.location.href = "Home.html"
 }

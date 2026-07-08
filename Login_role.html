@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="login-container">
+<div class="login-container" id="login-container">
 
     <h1>SkillHub</h1>
 
@@ -23,17 +23,20 @@
         type="password"
         id="password"
         placeholder="Enter Password">
-<div id="forgot"></div>
-    <button type="submit">
+<div id="forgot">
+<p id=""></p></div>
+<div class="btn-container">
+    <button type="submit" id="login_b">
         Login
     </button> 
     </form>
-    <button onclick="back()">
+    <button id="back_b" onclick="back()">
         Back
     </button>
-   <button onclick="Forgot()">
+   <button id="forgot_b" onclick="Forgot()">
         Forgot Password
     </button>
+    </div>
     <p>
         Don't have an account?
         <a href="Registration.html">

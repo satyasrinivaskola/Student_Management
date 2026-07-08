@@ -22,12 +22,17 @@ body{
    blue
     );
 }
-
+.btn-container{
+display:flex;
+flex-direction: row;
+button{
+margin:2px;}
+}
 .login-container{
 
     background:white;
 
-    width:400px;
+    width:600px;
 
     padding:40px;
 

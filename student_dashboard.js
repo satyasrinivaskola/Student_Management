@@ -1,36 +1,21 @@
-/*document.getElementById("studentName")
-.innerHTML =
-"Welcome to your Dashboard";*/
+const fileInput=document.getElementById("fileInput")
 
-function viewNotes(){
+  const formData = new FormData();
+function uploadFile(){
+console.log("uploadFile")
 
-fetch("http://192.168.100.6:5000/notes")
+const file_data=fileInput.files[0]
+ formData.append("file",file_data);
+console.log(file_data)
+ fetch("http://localhost:3000/upload",{
 
-.then(res=>res.text())
+        method:"POST",
 
-.then(data=>{
+        body:formData
 
-let output="";
-
-data.forEach(note=>{
-
-output += `
-<div>
-<h3>${note.title}</h3>
-<a href="${note.file}">
-Download Notes
-</a>
-</div>
-`;
-
-});
-
-document.getElementById("notesSection")
-.innerHTML = output;
-
-});
-
+    })
+    .then(res=>res.json())
+    .then(data=>console.log(data));
 }
-
 function  back(){
 window.location.href="Home.html"}

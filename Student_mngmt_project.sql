@@ -154,3 +154,10 @@ VALUES
 );
 
 select*from Students_details
+
+--To create student files
+
+create table student_files(
+file_name varchar,
+StudentId int,
+ foreign key(StudentId)  references students_details(StudentID))

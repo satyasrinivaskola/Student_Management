@@ -88,7 +88,24 @@ res.send({updated:true})
 })
    //console.log("rec length"+student_rec.recordset.length)
  
+//Forget Password
 
+app.put("/forget/:e", async(req, res) => {
+  //const email = Number(req.params.e);
+  
+  const {email,password}=req.body
+ const valid_email=await sql.query(`select *from students_details where Email='${email}'`)
+  const sql_result=await sql.query(`update students_details
+  set Password='${password}' where Email='${email}'`)
+  //console.log(sql_result.recordset[0].length)
+  console.log(valid_email.recordset.length)
+  if(valid_email.recordset.length==1){
+res.send({forget:true})}
+else{
+res.send({forget:false})
+}
+
+})
 
 //Admin
 app.get('/Admin',async(req,res)=>{
@@ -141,8 +158,63 @@ values('${email}','${Password}','${role}')`
 )
 res.json(...{edit:true},addadmin.recordset)
 })
-//console.log(result.recordset)
+
+//student files
+
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+
+    destination:function(req,file,cb){
+
+        cb(null,"uploads");
+
+    },
+
+    filename:function(req,file,cb){
+
+        cb(null,Date.now()+"-"+file.originalname);
+
+    }
+
+});
+
+const upload = multer({storage});
+
+async function startserver(){
+
+try{
+await sql.connect(config)
+const s=await sql.query(`select * from demo`)
+
+
+app.post("/upload",
+
+upload.single("file"),
+
+async(req,res)=>{
+const f=req.file.originalname
+const s=await sql.query(`insert into demo(name)
+
+values('${f}')`)
+    console.log(req.body);
+
+    console.log(req.file);
+
+    res.send({status:"Uploaded"});
+
+});
 }
+catch(err){
+console.log(err)}
+ app.listen(3000,()=>{
+ console.log("Connected")})
+
+}
+startserver()
+
+}
+
 /*app.listen(5000, "0.0.0.0", () => {
   console.log("Server running on port 5000");
 });*/

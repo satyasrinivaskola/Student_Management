@@ -2,6 +2,10 @@ let student=document.getElementById("student-table");
 let count=document.getElementById("count")
 let student_table=document.getElementById("student_table")
 //View Student Details
+const loading=document.getElementById("loading")
+
+
+
 function view_details(id){
 console.log("Hello View Button "+id)
 
@@ -14,6 +18,7 @@ console.log("Hello Edit")
 window.location.href=`Registration.html?email=${email}&edit=${edit}&id=${id}`
 
 }
+
 
 //delete Admin
 const del={
@@ -28,7 +33,15 @@ fetch(`http://localhost:3000/Admin/${id}`,del)
 if(data.details){
 alert(`'${data.details.Email}'Admin deleted succesfully`)}})
 }
+
 function student_details(){
+let loading_status=false
+if(loading===false){
+loading.textContent="Loding ....."
+}
+else{
+loading.textContent=" "
+}
 fetch("http://localhost:3000/Admin")
 .then(res=> res.json())
 .then(data=>{
@@ -44,7 +57,7 @@ let td_item_3=document.createElement("td")
 let td_item_4=document.createElement("td")
 let button=document.createElement("button")
 button.textContent="View Details"
-
+//loading_status=true
 button.addEventListener('click',()=>view_details(list.StudentID))
 //let td_item_3=document.createElement("td")
 td_item_1.textContent=(list.FirstName+list.LastName)
