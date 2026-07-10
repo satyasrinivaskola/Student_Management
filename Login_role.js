@@ -1,8 +1,9 @@
 
-
+let username1=document.getElementById("email")
+let password1=document.getElementById("password")   
 async function  btn(event){
-const username=document.getElementById("email").value
-const password=document.getElementById("password").value
+let username=username1.value
+let password=password1.value
 event.preventDefault()
 const user={
 email:username,
@@ -32,8 +33,14 @@ window.location.href=`Student_dashboard.html?email=${email_id}`
 }
 }
 else{
-console.log("filed")
-console.log(data)}
+//console.log("failed")
+
+alert("Incorrect Credentials")
+username1.value=""
+password1.value=""
+console.log(username1)
+}
+
 })
 
 }

@@ -11,7 +11,9 @@ function uploadFile(){
   const desc=desc_e.value
 console.log("uploadFile")
 console.log(email_id)
+//console.log(file_data)
 const file_data=fileInput.files[0]
+//{file:"filedate"}
  formData.append("file",file_data);
   formData.append("email",email_id);
    formData.append("desc",desc);

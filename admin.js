@@ -26,14 +26,18 @@ method:"DELETE",
 
 }
 function removeAdmin(id){
+ student_table.innerHTML="";
+    Admin_details.innerHTML="";
 console.log("Remove"+id)
 fetch(`http://localhost:3000/Admin/${id}`,del)
 .then(res=>res.json())
 .then(data=>{console.log(data)
 if(data.details){
-alert(`'${data.details.Email}'Admin deleted succesfully`)}})
+alert(`'${data.details.Email}'Admin deleted succesfully`)
+ student_details();}})
+ 
 }
-
+const Admin_details = document.getElementById("Admin_details");
 function student_details(){
 let loading_status=false
 if(loading===false){
@@ -114,9 +118,9 @@ li_div.classList.add("admin_details")
 })
 
 }
+//const admin_page=document.getElementById("admin_page")
 
 student_details()
-const admin_page=document.getElementById("admin_page")
 let add=true
 function admin(){
 
@@ -135,6 +139,8 @@ admin_page.innerHTML=
 `
 const submit=document.getElementById("submit")
 submit.addEventListener("click",function(){
+student_table.innerHTML="";
+    Admin_details.innerHTML="";
 const Email_admin=document.getElementById("Email_admin")
 
 const Password=document.getElementById("Password")
@@ -151,7 +157,9 @@ headers:{"Content-Type":"application/json"},
 body:JSON.stringify(admin)}
 fetch("http://localhost:3000/addAdmin",methods)
 alert(Email_admin.value+"added succeefully")
-admin_page.innerHTML=""
+admin_page.innerHTML="";
+
+    student_details(); 
 })
 
 //add=false
