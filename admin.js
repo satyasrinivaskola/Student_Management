@@ -144,9 +144,10 @@ student_table.innerHTML="";
 const Email_admin=document.getElementById("Email_admin")
 
 const Password=document.getElementById("Password")
+if(Email_admin.value!=="" &Password.value!==""){
 
-console.log(Email_admin.value)
-console.log(Password.value)
+
+
 const admin={email:Email_admin.value,
 Password:Password.value,
 role:"Admin"
@@ -159,7 +160,9 @@ fetch("http://localhost:3000/addAdmin",methods)
 alert(Email_admin.value+"added succeefully")
 admin_page.innerHTML="";
 
-    student_details(); 
+    student_details(); }
+    else{
+    alert("Please enter Email &Password")}
 })
 
 //add=false
