@@ -1,0 +1,26 @@
+{
+  "name": "student_mngment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "admin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satyasrinivaskola/Student_Management.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satyasrinivaskola/Student_Management/issues"
+  },
+  "homepage": "https://github.com/satyasrinivaskola/Student_Management#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mssql": "^12.7.0",
+    "multer": "^2.2.0"
+  }
+}
