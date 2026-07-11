@@ -1,10 +1,10 @@
 const sql = require("mssql");
 
 const config = {
-   server: process.env.DB_SERVER || 'SATYA-KOLA\\SQLEXPRESS',
-    database: process.env.DB_NAME || 'master',
-    user: process.env.DB_USER || 'demo1',
-    password: process.env.DB_PASSWORD || 'NewPassword@123',
+   server: process.env.DB_SERVER ,
+    database: process.env.DB_NAME ,
+    user: process.env.DB_USER ,
+    password: process.env.DB_PASSWORD ,
 
     options:{
         trustServerCertificate:true,
