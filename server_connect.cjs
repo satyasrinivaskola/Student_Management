@@ -1,15 +1,14 @@
 const sql = require("mssql");
 
 const config = {
-   server: process.env.DB_SERVER ,
-    database: process.env.DB_NAME ,
-    user: process.env.DB_USER ,
-    password: process.env.DB_PASSWORD ,
-
-    options:{
-        trustServerCertificate:true,
-        encrypt:false
-    }
+host: process.env.DB_SERVER,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT || 3306,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 };
 const express=require('express')
 const app=express()
@@ -17,8 +16,8 @@ const cros=require('cors')
 app.use(cros())
 app.use(express.json());
 async function data(){
-await sql.connect(config)
-
+//await sql.connect(config)
+const pool = mysql.createPool(config);
 //Login
 app.post("/login",async(req,res)=>{
 const {email,password}=req.body
