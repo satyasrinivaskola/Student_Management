@@ -1,4 +1,4 @@
-const sql = require("mssql");
+const mysql = require("mssql");
 
 const config = {
 host: process.env.DB_SERVER,
